@@ -14,4 +14,5 @@ public class SingUp_LoginLocators {
     public static final Target PASSWORD_LOGIN = Target.the("input password login").located(By.cssSelector("input[data-qa='login-password']"));
     public static final Target BTN_LOGIN = Target.the("buttton login").located(By.cssSelector("button[data-qa='login-button']"));
     public static final Target TEXT_EMAIL_INCORRECT = Target.the("Text Email incorrect").located(By.xpath("//div[@class='login-form']/form/p"));
+    public static final Target TEXT_EMAIL_EXIST = Target.the("Text Email Address exist").located(By.xpath("//div[@class='signup-form']/form/p"));
 }

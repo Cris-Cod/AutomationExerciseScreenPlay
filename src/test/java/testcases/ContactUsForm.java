@@ -9,27 +9,29 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import screenplay.questions.ValidateText;
-import screenplay.tasks.ClickBtnSingUp;
-import screenplay.tasks.LoginNewUser;
+import screenplay.tasks.BtnBackHome;
+import screenplay.tasks.ClickBtnContactUs;
+import screenplay.tasks.ContactUsPage;
 import screenplay.tasks.OpenPage;
+import screenplay.userInterface.ContactUsLocators;
 import screenplay.userInterface.HomeLocators;
-import screenplay.userInterface.SingUp_LoginLocators;
 
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 @RunWith(SerenityRunner.class)
-public class RegisterUserExistingEmail {
-
+public class ContactUsForm {
     private WebDriver driver;
     private Actor user = Actor.named("User");
+    String name = "Autocode";
+    String email = "autocode@gmail.com";
+    String subject = "Testing";
+    String message = "Testing, Testing";
 
     @Test
-    public void RegisterEmailExisting() {
+    public void contactFornm(){
         driver = new ChromeDriver();
         user.can(BrowseTheWeb.with(driver));
         driver.manage().window().maximize();
 
-        String name = "Autocode";
-        String email = "autocode@gmail.com";
 
         user.attemptsTo(
                 OpenPage.loginPage()
@@ -41,22 +43,30 @@ public class RegisterUserExistingEmail {
         );
 
         user.attemptsTo(
-                ClickBtnSingUp.clickBtnSingUp()
+                ClickBtnContactUs.clickBtnContactUs()
         );
 
-        String txtSingup = user.asksFor(Text.of(SingUp_LoginLocators.TEXT_NEW_USER_SIGNUP));
+        String txtGetInTouch = user.asksFor(Text.of(ContactUsLocators.TEXT_GET_IN_TOUCH));
         user.should(
-                seeThat(new ValidateText("New User Signup!", txtSingup))
+                seeThat(new ValidateText("GET IN TOUCH", txtGetInTouch))
         );
 
         user.attemptsTo(
-                LoginNewUser.loginNewUser(name,email)
+                ContactUsPage.contactUsPage(name,email,subject,message)
         );
 
-
-        String txtEmailExist = user.asksFor(Text.of(SingUp_LoginLocators.TEXT_EMAIL_EXIST));
+        String txtSucces = user.asksFor(Text.of(ContactUsLocators.TEXT_SUCCES));
         user.should(
-                seeThat(new ValidateText("Email Address already exist!", txtEmailExist))
+                seeThat(new ValidateText("Success! Your details have been submitted successfully.", txtSucces))
+        );
+
+        user.attemptsTo(
+                BtnBackHome.btnBackHome()
+        );
+
+        String categoryHome = user.asksFor(Text.of(HomeLocators.TEXT_CATEGORY));
+        user.should(
+                seeThat(new ValidateText("Category", categoryHome))
         );
 
     }
