@@ -11,5 +11,6 @@ public class HomeLocators {
     public static final Target BTN_DELETE_ACCOUNT = Target.the("button delete account").located(By.xpath("//div[@class='shop-menu pull-right']/ul/li[5]/a"));
     public static final Target BTN_LOGOUT = Target.the("button Logout").located(By.xpath("//div[@class='shop-menu pull-right']/ul/li[4]/a"));
     public static final Target BTN_CONTACT_US = Target.the("button Contact US").located(By.xpath("//div[@class='shop-menu pull-right']/ul/li[8]/a"));
+    public static final Target BTN_PRODUCTS = Target.the("button Products").located(By.xpath("//div[@class='shop-menu pull-right']/ul/li[2]/a"));
 
 }
