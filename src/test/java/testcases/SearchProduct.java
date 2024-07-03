@@ -5,20 +5,22 @@ import net.serenitybdd.screenplay.questions.Text;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import screenplay.questions.ValidateElementIsDisplayed;
 import screenplay.questions.ValidateText;
-import screenplay.tasks.*;
+import screenplay.tasks.ClickBtnProduct;
+import screenplay.tasks.HandlePopup;
+import screenplay.tasks.OpenPage;
+import screenplay.tasks.SerachProductTask;
 import screenplay.userInterface.HomeLocators;
 import screenplay.userInterface.ProductPageLocators;
 import screenplay.userInterface.TextsPages;
 
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 
+
 @RunWith(SerenityRunner.class)
-public class VerifyDetailAllProducts extends Setup{
+public class SearchProduct extends Setup{
 
-
-    //GetTextValidate getTextValidate = new GetTextValidate();
+    String productSearch = "Frozen Tops For Kids";
 
     @Before
     public void setUpTest(){
@@ -26,13 +28,15 @@ public class VerifyDetailAllProducts extends Setup{
     }
 
     @Test
-    public void verifyDetailProduct(){
+    public void searchProduct(){
         user.attemptsTo(
                 OpenPage.loginPage()
         );
 
+        user.attemptsTo(
+                HandlePopup.ifPresent(HomeLocators.AD_DIMMIS_BUTTON)
+        );
 
-        //String ValidateHome = getTextValidate.featureHome;
         user.should(
                 seeThat(new ValidateText(TextsPages.category, GetTextValidate.featureHome))
         );
@@ -44,22 +48,25 @@ public class VerifyDetailAllProducts extends Setup{
                 HandlePopup.ifPresent(HomeLocators.AD_DIMMIS_BUTTON)
         );
 
-        /*user.attemptsTo(
-                ClosePopUp.closePopUp()
-        );*/
-
         String textAllProducts = user.asksFor(Text.of(ProductPageLocators.TEXT_ALL_PRODUCTS));
         user.should(
                 seeThat(new ValidateText(TextsPages.allProducts, textAllProducts))
         );
 
         user.attemptsTo(
-               ProductPageIterator.productPage("Sleeveless Dress")
+                SerachProductTask.serachProductTask(productSearch)
         );
 
-       user.should(
-                seeThat(new ValidateElementIsDisplayed(ProductPageLocators.TEXT_PRODUCT_NAME))
+        String textsearchProduct = user.asksFor(Text.of(ProductPageLocators.TEXT_SEARCH_PRODUCTS));
+        user.should(
+                seeThat(new ValidateText(TextsPages.searchProduct, textsearchProduct))
+        );
+
+        String product = user.asksFor(Text.of(ProductPageLocators.TEXT_CARDS));
+        user.should(
+                seeThat(new ValidateText(productSearch, product))
         );
 
     }
+
 }

@@ -4,15 +4,15 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import screenplay.userInterface.GetTextValidate;
 
 public class Setup {
 
-    private WebDriver driver;
-    private Actor user = Actor.named("User");
+    protected WebDriver driver;
+    protected static Actor user;
 
-    public void setUp(WebDriver driver, Actor user){
+    public void setUp(){
         driver = new ChromeDriver();
+        user = Actor.named("User");
         user.can(BrowseTheWeb.with(driver));
         driver.manage().window().maximize();
     }

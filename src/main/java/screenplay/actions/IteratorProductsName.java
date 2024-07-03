@@ -10,25 +10,29 @@ import static net.serenitybdd.screenplay.Tasks.instrumented;
 
 public class IteratorProductsName implements Task {
 
-    private final String nameProduct;
+    private final String nameP;
 
-    public IteratorProductsName(String nameProduct) {
-        this.nameProduct = nameProduct;
+    public IteratorProductsName(String nameP) {
+        this.nameP = nameP;
     }
 
-    public static IteratorProductsName iteratorProducts(String nameProduct){
-        return instrumented(IteratorProductsName.class, nameProduct);
+
+    public static IteratorProductsName iteratorProducts(String nameP){
+        return instrumented(IteratorProductsName.class, nameP);
     }
 
     @Override
     public <T extends Actor> void performAs(T actor) {
         ListOfWebElementFacades products = ProductPageLocators.TEXT_CARDS.resolveAllFor(actor);
+        ListOfWebElementFacades btn_products = ProductPageLocators.BTN_VIEW_PRODUCTS.resolveAllFor(actor);
         for (int i = 0; i < products.size(); i++){
-            String nameProdict = products.get(i).getText();
-            if (nameProdict.equalsIgnoreCase(nameProduct)){
+            String nameProduct = products.get(i).getText();
+            System.out.println(nameProduct);
+            if (nameProduct.equalsIgnoreCase(nameP)){
                 actor.attemptsTo(
-                        Click.on(ProductPageLocators.BTN_VIEW_PRODUCTS)
+                        Click.on(btn_products.get(i))
                 );
+                break;
             }
         }
     }
