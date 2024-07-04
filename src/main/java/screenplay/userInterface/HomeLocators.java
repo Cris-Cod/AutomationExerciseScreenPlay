@@ -13,6 +13,7 @@ public class HomeLocators {
     public static final Target BTN_CONTACT_US = Target.the("button Contact US").located(By.xpath("//div[@class='shop-menu pull-right']/ul/li[8]/a"));
     public static final Target BTN_PRODUCTS = Target.the("button Products").located(By.xpath("//div[@class='shop-menu pull-right']/ul/li[2]/a"));
     public static final Target AD_DIMMIS_BUTTON = Target.the("add button dimmit").located(By.id("dismiss-button"));
-
+    public static final Target IFRAME = Target.the("Iframe").located(By.id("aswift_3"));
+    public static final Target IFRAME2 = Target.the("Iframe2").located(By.id("ad_iframe"));
     //dismiss-button
 }

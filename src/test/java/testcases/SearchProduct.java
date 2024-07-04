@@ -34,7 +34,7 @@ public class SearchProduct extends Setup{
         );
 
         user.attemptsTo(
-                HandlePopup.ifPresent(HomeLocators.AD_DIMMIS_BUTTON)
+                HandlePopup.ifPresent(HomeLocators.IFRAME, HomeLocators.AD_DIMMIS_BUTTON)
         );
 
         user.should(
@@ -45,7 +45,7 @@ public class SearchProduct extends Setup{
         );
 
         user.attemptsTo(
-                HandlePopup.ifPresent(HomeLocators.AD_DIMMIS_BUTTON)
+                HandlePopup.ifPresent(HomeLocators.IFRAME,HomeLocators.AD_DIMMIS_BUTTON)
         );
 
         String textAllProducts = user.asksFor(Text.of(ProductPageLocators.TEXT_ALL_PRODUCTS));

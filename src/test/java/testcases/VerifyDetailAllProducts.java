@@ -14,7 +14,7 @@ import screenplay.userInterface.TextsPages;
 
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 
-@RunWith(SerenityRunner.class)
+//@RunWith(SerenityRunner.class)
 public class VerifyDetailAllProducts extends Setup{
 
 
@@ -31,6 +31,14 @@ public class VerifyDetailAllProducts extends Setup{
                 OpenPage.loginPage()
         );
 
+        user.attemptsTo(
+                HandlePopup.ifPresent(HomeLocators.IFRAME, HomeLocators.AD_DIMMIS_BUTTON)
+        );
+
+        user.attemptsTo(
+                HandlePopup.ifPresent(HomeLocators.IFRAME2, HomeLocators.AD_DIMMIS_BUTTON)
+        );
+
 
         //String ValidateHome = getTextValidate.featureHome;
         user.should(
@@ -41,8 +49,13 @@ public class VerifyDetailAllProducts extends Setup{
         );
 
         user.attemptsTo(
-                HandlePopup.ifPresent(HomeLocators.AD_DIMMIS_BUTTON)
+                HandlePopup.ifPresent(HomeLocators.IFRAME, HomeLocators.AD_DIMMIS_BUTTON)
         );
+
+        user.attemptsTo(
+                HandlePopup.ifPresent(HomeLocators.IFRAME2, HomeLocators.AD_DIMMIS_BUTTON)
+        );
+
 
         /*user.attemptsTo(
                 ClosePopUp.closePopUp()
@@ -56,6 +69,16 @@ public class VerifyDetailAllProducts extends Setup{
         user.attemptsTo(
                ProductPageIterator.productPage("Sleeveless Dress")
         );
+
+
+        user.attemptsTo(
+                HandlePopup.ifPresent(HomeLocators.IFRAME, HomeLocators.AD_DIMMIS_BUTTON)
+        );
+
+        user.attemptsTo(
+                HandlePopup.ifPresent(HomeLocators.IFRAME2, HomeLocators.AD_DIMMIS_BUTTON)
+        );
+
 
        user.should(
                 seeThat(new ValidateElementIsDisplayed(ProductPageLocators.TEXT_PRODUCT_NAME))
